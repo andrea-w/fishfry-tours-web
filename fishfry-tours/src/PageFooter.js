@@ -8,10 +8,7 @@ export default function PageFooter() {
         <footer>
             <Paper>
                 <Typography>
-                    {process .env.DEV_MODE ? 
-                    (`see <a href="${process.env.API_URL_LOCAL}/graphql">Graph<em>i</em>QL</a> to interact with the GraphQL endpoint`) : 
-                    (`see <a href="${process.env.API_URL_PROD}/graphql">Graph<em>i</em>QL</a> to interact with the GraphQL endpoint`)
-                    }               
+                    see <a href="`${process.env.API_URL_PROD}`/graphql">Graph<em>i</em>QL</a> to interact with the GraphQL endpoint
                 </Typography>
             </Paper>
         </footer>
