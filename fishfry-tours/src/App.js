@@ -32,7 +32,7 @@ class App extends React.Component {
     this.getBoats()
   }
 
-  getBoats() {
+  getBoats = () => {
     const queryString = `query { boats { id name status }}`
     console.log(process.env.API_URL_PROD)
     console.log(process.env.DEV_MODE)
@@ -43,7 +43,7 @@ class App extends React.Component {
     })
   }
 
-  addBoat(boatName) {
+  addBoat = (boatName) => {
     if(boatName.length > 0) {
       const mutationString = `mutation { boats { addBoat(name: "${boatName}") {id name status } }}`
       this.axios_instance.post('graphql', {query: mutationString}).then((response) => {
