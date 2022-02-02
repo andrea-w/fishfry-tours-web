@@ -34,6 +34,8 @@ class App extends React.Component {
 
   getBoats() {
     const queryString = `query { boats { id name status }}`
+    console.log(process.env.API_URL_PROD)
+    console.log(process.env.DEV_MODE)
     this.axios_instance.post('/graphql', {query: queryString}).then((response) => {
       this.setState( {
         boats: response.data.data.boats
