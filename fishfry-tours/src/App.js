@@ -6,7 +6,6 @@ import React from 'react';
 import BoatCardList from './BoatCardList';
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
 import { Button, Grid, TextField } from '@material-ui/core';
-import { API_BASE_URL } from './env';
 
 const axios = require('axios').default
 
@@ -18,7 +17,7 @@ class App extends React.Component {
       newBoatName: ''
     }
     this.axios_instance = axios.create({
-      baseURL: API_BASE_URL,
+      baseURL: process.env.DEV_MODE ? process.env.API_URL_LOCAL : process.env.API_URL_PROD,
       config: {
         headers: {
           post: {
