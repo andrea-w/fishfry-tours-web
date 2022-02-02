@@ -76,7 +76,6 @@ class App extends React.Component {
   updateBoatStatus = (boatId, newStatus) => {
     const mutationString = `mutation { boats { updateBoatStatus(id: ${boatId}, status: ${newStatus}) { id name status }}}`
     this.axios_instance.post('graphql', {query: mutationString}).then((response) => {
-      console.log(response)
       if (response.status === 200) {
         this.getBoats()
       }

@@ -2,6 +2,7 @@ import React from "react";
 import { Card, CardActions, CardContent, Paper, Typography, makeStyles } from "@material-ui/core";
 import ClearIcon from '@mui/icons-material/Clear';
 import { Button, IconButton } from "@mui/material";
+import Grid from '@material-ui/core/Grid'
 
 const useStyles = makeStyles({
     cardsSection: {
@@ -141,41 +142,58 @@ const BoatCardList = ({ boatCards, deleteBoat, updateBoat }) => {
 
     const classes = useStyles()
 
-    return (
-        <Paper>
-        <section className={classes.cardsSection}>
-            <Paper>
+    function GridItem({ classes, child }) {
+        return (
+            <Grid item xs={12} sm={6} md={3}>
+                <Paper className={classes.cardsSection}>
+                    {child}
+                </Paper>
+            </Grid>
+        )
+    }
+
+    const dockedComponent = (
+        <div>
             <Typography>
                 <h1>DOCKED</h1>
             </Typography>
             {dockedBoats.map(renderCard)}
-            </Paper>
-        </section>
-        <section className={classes.cardsSection}>
-            <Paper>
+        </div>
+    )
+    const maintenanceComponent = (
+        <div>
                 <Typography>
                     <h1>MAINTENANCE</h1>
                 </Typography>
                 {maintenanceBoats.map(renderCard)}
-            </Paper>
-        </section>
-        <section className={classes.cardsSection}>
-            <Paper>
-                <Typography>
-                    <h1>OUTBOUND TO SEA</h1>
-                </Typography>
-                {outboundBoats.map(renderCard)}
-            </Paper>
-        </section>
-        <section className={classes.cardsSection}>
-            <Paper>
+        </div>
+    )
+    const inboundComponent = (
+        <div>
                 <Typography>
                     <h1>INBOUND TO HARBOUR</h1>
                 </Typography>
                 {inboundBoats.map(renderCard)}
-            </Paper>
-        </section>
-        </Paper>
+        </div>
+    )
+    const outboundComponent = (
+        <div>                <Typography>
+        <h1>OUTBOUND TO SEA</h1>
+    </Typography>
+    {outboundBoats.map(renderCard)}
+
+        </div>
+    )
+
+    return (
+        <div>
+            <Grid container spacing={1}>
+                <GridItem classes={classes} child={dockedComponent} />
+                <GridItem classes={classes} child={maintenanceComponent} />
+                <GridItem classes={classes} child={inboundComponent} />
+                <GridItem classes={classes} child={outboundComponent} />
+            </Grid>
+        </div>
     )
 }
 
