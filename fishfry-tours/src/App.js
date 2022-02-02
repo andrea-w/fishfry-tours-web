@@ -1,11 +1,9 @@
 import './App.css';
 import PageHeader from './PageHeader';
 import PageFooter from './PageFooter';
-import Dropzone from './Dropzone';
 import React from 'react';
 import BoatCardList from './BoatCardList';
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
-import { Button, Grid, TextField } from '@material-ui/core';
+import { Button, TextField } from '@material-ui/core';
 
 const axios = require('axios').default
 
@@ -17,7 +15,7 @@ class App extends React.Component {
       newBoatName: ''
     }
     this.axios_instance = axios.create({
-      baseURL: process.env.DEV_MODE ? process.env.API_URL_LOCAL : process.env.API_URL_PROD,
+      baseURL: "https://fishfry-tours.herokuapp.com/",
       config: {
         headers: {
           post: {
@@ -77,74 +75,10 @@ class App extends React.Component {
     })
   }
 
-  onDrop = (acceptedFiles) => {
-    console.log(acceptedFiles)
-  }
-
-  reorder = (list, startIndex, endIndex) => {
-    const result = Array.from(list)
-    const [removed] = result.splice(startIndex, 1)
-    result.splice(endIndex, 0, removed)
-
-    return result
-  }
-
-  onDragEnd = (result) => {
-    // if dropped outside list
-    if (!result.destination) {
-      return;
-    }
-    const items = this.reorder(this.state.boats, result.source.index, result.destination.index)
-
-    this.setState({boats: items})
-  }
-
-  grid = 8
-
-  getItemStyle = (isDragging, draggableStyle) => ({
-    userSelect: "none",
-    padding: this.grid * 2,
-    margin: `0 0 ${this.grid}px 0`,
-
-    background: isDragging ? "lightgreen" : "grey",
-    ...draggableStyle
-  })
-
-  getListStyle = isDraggingOver => ({
-    background: isDraggingOver ? "lightblue" : "lightgrey",
-    padding: Grid,
-    width: 250
-  })
-
-
-
   render() {
     return (
       <div className="App">
         <PageHeader />
-        <h1 className='text-center'>Drag and Drop example</h1>
-        <Dropzone onDrop={this.onDrop} />
-        {/* <DragDropContext onDragEnd={onDragEnd}>
-          <Droppable droppableId='droppable'>
-            {(provided, snapshot) => (
-              <div {...provided.droppableProps} ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} >
-                {this.state.items.map((item, index) => (
-                  <Draggable key={item.id} draggableId={item.id} index={index} >
-                    {(provided, snapshot) => (
-                      <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}
-                      style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
-                      >
-                        {item.content}
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
-                {provided.placeholder}
-              </div>
-            )}
-  
-          </Droppable>
-        </DragDropContext> */}
         <TextField variant="outlined" label="Boat Name" size="small" onChange={(e) => {
           this.setState({newBoatName: e.target.value})
         }} />
