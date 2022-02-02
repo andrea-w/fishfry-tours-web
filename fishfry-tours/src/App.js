@@ -89,12 +89,14 @@ class App extends React.Component {
       <div className="App">
         <PageHeader />
         <FormControl className={classes.formControl}>
-          <TextField variant="outlined" label="Boat Name" size="small" onChange={(e) => {
-            this.setState({newBoatName: e.target.value})
-          }} />
-          <Button variant="contained" onClick={() => {this.addBoat(this.state.newBoatName)}}>
-            Add Boat
-          </Button>
+          <div>
+            <TextField variant="outlined" label="Boat Name" size="small" onChange={(e) => {
+              this.setState({newBoatName: e.target.value})
+            }} />
+            <Button variant="contained" onClick={() => {this.addBoat(this.state.newBoatName)}}>
+              Add Boat
+            </Button>
+          </div>
         </FormControl>
         <BoatCardList boatCards={this.state.boats} deleteBoat={this.deleteBoat} updateBoat={this.updateBoatStatus} />
         <PageFooter />

@@ -14,7 +14,7 @@ const MaintenanceCard = ( boatCard, index, deleteBoat, updateBoat ) => {
         <div className={`maintenance-boat-card-${index}`}>
             <Card variant="outlined">
                 <CardContent>
-                    <Typography variant="h5">
+                    <Typography variant="subtitle1">
                         {boatCard.name}
                     </Typography>
                 </CardContent>
@@ -42,7 +42,7 @@ const OutboundCard = ( boatCard, index, deleteBoat, updateBoat ) => {
         <div className={`outbound-boat-card-${index}`}>
             <Card variant="outlined">
                 <CardContent>
-                    <Typography variant="h5">
+                    <Typography variant="subtitle1">
                         {boatCard.name}
                     </Typography>
                 </CardContent>
@@ -67,7 +67,7 @@ const InboundCard = ( boatCard, index, deleteBoat, updateBoat ) => {
         <div className={`inbound-boat-card-${index}`}>
             <Card variant="outlined">
                 <CardContent>
-                    <Typography variant="h5">
+                    <Typography variant="subtitle1">
                         {boatCard.name}
                     </Typography>
                 </CardContent>
@@ -92,7 +92,7 @@ const DockedCard = ( boatCard, index, deleteBoat, updateBoat ) => {
         <div className={`docked-boat-card-${index}`}>
             <Card variant="outlined">
                 <CardContent>
-                    <Typography variant="h5">
+                    <Typography variant="subtitle1">
                         {boatCard.name}
                     </Typography>
                 </CardContent>
