@@ -8,7 +8,7 @@ export default function PageFooter() {
         <footer>
             <Paper>
                 <Typography>
-                    see <a href="`${process.env.API_URL_PROD}`/graphql">Graph<em>i</em>QL</a> to interact with the GraphQL endpoint
+                    see <a href="https://fishfry-tours.herokuapp.com/graphql">Graph<em>i</em>QL</a> to interact with the GraphQL endpoint
                 </Typography>
             </Paper>
         </footer>
