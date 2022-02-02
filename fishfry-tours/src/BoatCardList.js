@@ -1,7 +1,13 @@
 import React from "react";
-import { Card, CardActions, CardContent, Paper, Typography } from "@material-ui/core";
+import { Card, CardActions, CardContent, Paper, Typography, makeStyles } from "@material-ui/core";
 import ClearIcon from '@mui/icons-material/Clear';
 import { Button, IconButton } from "@mui/material";
+
+const useStyles = makeStyles({
+    cardsSection: {
+        margin: '15px'
+    }
+})
 
 const MaintenanceCard = ( boatCard, index, deleteBoat, updateBoat ) => {
     return (
@@ -133,9 +139,11 @@ const BoatCardList = ({ boatCards, deleteBoat, updateBoat }) => {
     const outboundBoats = boatCards.filter(boat => boat.status.toLowerCase().replace(/_/g, " ") === 'outbound to sea')
     const inboundBoats = boatCards.filter(boat => boat.status.toLowerCase().replace(/_/g, " ") === 'inbound to harbour')
 
+    const classes = useStyles()
+
     return (
         <Paper>
-        <section className="docked-boat-card-list">
+        <section className={classes.cardsSection}>
             <Paper>
             <Typography>
                 <h1>DOCKED</h1>
@@ -143,7 +151,7 @@ const BoatCardList = ({ boatCards, deleteBoat, updateBoat }) => {
             {dockedBoats.map(renderCard)}
             </Paper>
         </section>
-        <section className="maintenance-boat-card-list">
+        <section className={classes.cardsSection}>
             <Paper>
                 <Typography>
                     <h1>MAINTENANCE</h1>
@@ -151,7 +159,7 @@ const BoatCardList = ({ boatCards, deleteBoat, updateBoat }) => {
                 {maintenanceBoats.map(renderCard)}
             </Paper>
         </section>
-        <section className="outbound-boat-card-list">
+        <section className={classes.cardsSection}>
             <Paper>
                 <Typography>
                     <h1>OUTBOUND TO SEA</h1>
@@ -159,7 +167,7 @@ const BoatCardList = ({ boatCards, deleteBoat, updateBoat }) => {
                 {outboundBoats.map(renderCard)}
             </Paper>
         </section>
-        <section className="inbound-boat-card-list">
+        <section className={classes.cardsSection}>
             <Paper>
                 <Typography>
                     <h1>INBOUND TO HARBOUR</h1>
@@ -171,4 +179,4 @@ const BoatCardList = ({ boatCards, deleteBoat, updateBoat }) => {
     )
 }
 
-export default BoatCardList
+export default (BoatCardList)

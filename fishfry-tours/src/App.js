@@ -3,9 +3,16 @@ import PageHeader from './PageHeader';
 import PageFooter from './PageFooter';
 import React from 'react';
 import BoatCardList from './BoatCardList';
-import { Button, TextField } from '@material-ui/core';
+import { Button, FormControl, TextField, withStyles } from '@material-ui/core';
 
 const axios = require('axios').default
+
+const styles = () => ({
+  formControl: {
+    margin: '10px',
+    minWidth: '200px'
+  }
+})
 
 class App extends React.Component {
   constructor() {
@@ -24,7 +31,10 @@ class App extends React.Component {
         }
       }
     })
+
   }
+
+
 
   componentDidMount() {
     this.getBoats()
@@ -32,8 +42,6 @@ class App extends React.Component {
 
   getBoats = () => {
     const queryString = `query { boats { id name status }}`
-    console.log(process.env.API_URL_PROD)
-    console.log(process.env.DEV_MODE)
     this.axios_instance.post('/graphql', {query: queryString}).then((response) => {
       this.setState( {
         boats: response.data.data.boats
@@ -76,15 +84,18 @@ class App extends React.Component {
   }
 
   render() {
+    const { classes } = this.props
     return (
       <div className="App">
         <PageHeader />
-        <TextField variant="outlined" label="Boat Name" size="small" onChange={(e) => {
-          this.setState({newBoatName: e.target.value})
-        }} />
-        <Button variant="contained" onClick={() => {this.addBoat(this.state.newBoatName)}}>
-          Add Boat
-        </Button>
+        <FormControl className={classes.formControl}>
+          <TextField variant="outlined" label="Boat Name" size="small" onChange={(e) => {
+            this.setState({newBoatName: e.target.value})
+          }} />
+          <Button variant="contained" onClick={() => {this.addBoat(this.state.newBoatName)}}>
+            Add Boat
+          </Button>
+        </FormControl>
         <BoatCardList boatCards={this.state.boats} deleteBoat={this.deleteBoat} updateBoat={this.updateBoatStatus} />
         <PageFooter />
       </div>
@@ -93,4 +104,4 @@ class App extends React.Component {
   
 }
 
-export default App
+export default withStyles(styles)(App)

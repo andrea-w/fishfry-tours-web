@@ -8,7 +8,7 @@ export default function PageHeader() {
 
     return (
         <header>
-            <AppBar>{display()}</AppBar>
+            <AppBar position="sticky">{display()}</AppBar>
         </header>
     )
 }
